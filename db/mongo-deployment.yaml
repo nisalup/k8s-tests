@@ -30,6 +30,19 @@ spec:
             secretKeyRef:
               name: mongodb-secret
               key: mongo-root-password
+        volumeMounts:
+        - name: mongodb-data
+          mountPath: /data/db
+        - name: mongoinit
+          mountPath: /docker-entrypoint-initdb.d/
+          readOnly: true
+      volumes:
+      - name: mongodb-data
+        persistentVolumeClaim:
+          claimName: mongodb-pvc
+      - name: mongoinit
+        configMap:
+          name: mongoinit-configmap
 ---
 apiVersion: v1
 kind: Service

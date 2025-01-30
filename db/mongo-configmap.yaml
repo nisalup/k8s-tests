@@ -4,3 +4,26 @@ metadata:
   name: mongodb-configmap
 data:
   database_url: mongodb-service
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: mongoinit-configmap
+data:
+  mongo-init.js: |
+    db = db.getSiblingDB("admin");
+    db.createUser({
+      user: "nisal",
+      pwd: "12345",
+      roles: [{
+          role: "readWrite",
+          db: "dev"
+      }]
+    });
+
+    db = db.getSiblingDB('dev');
+
+    db.User.insertOne({
+        name: "nisal",
+        age: 75
+    });
