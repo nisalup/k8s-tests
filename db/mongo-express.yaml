@@ -39,7 +39,7 @@ spec:
           valueFrom:
             secretKeyRef:
               name: mongodb-secret
-              key: mmongo-express-webui-password
+              key: mongo-express-webui-password
         - name: ME_CONFIG_MONGODB_SERVER
           valueFrom:
             configMapKeyRef:
