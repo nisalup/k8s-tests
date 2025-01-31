@@ -6,14 +6,14 @@ metadata:
   namespace:
 spec:
   rules:
-    - host: mongo-ingress.local
+    - host: {{ .Values.ingress.host }}
       http:
         paths:
         - path: /
           pathType: Prefix
           backend:
             service:
-              name: mongo-express-service
+              name: {{ .Values.mongoExpressService.name }}
               port:
-                number: 8081
+                number: {{ .Values.mongoExpressService.port }}
 {{- end }}

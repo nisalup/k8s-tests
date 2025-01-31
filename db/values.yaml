@@ -1,8 +1,10 @@
 environment: default
 
+mongoExpressService:
+  name: mongo-express-service
+  port: 8081
+
 ingress:
   enabled: true
   host: mongo-ingress.local
-  path: /
-  pathType: Prefix
-  port: 8081
+
